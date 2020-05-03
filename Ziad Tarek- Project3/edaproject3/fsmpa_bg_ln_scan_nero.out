@@ -1,0 +1,115 @@
+
+                   @@@    @@@           @@@@@@@              
+                    @@     @              @@   @@            
+                    @@@    @              @@    @@           
+                    @ @@   @    @@@@@     @@    @@     @@@   
+                    @ @@   @   @     @    @@   @@    @@   @@ 
+                    @  @@  @  @@     @@   @@@@@     @@     @@
+                    @   @@ @  @@@@@@@@@   @@  @@    @@     @@
+                    @   @@ @  @@          @@   @@   @@     @@
+                    @    @@@  @@      @   @@   @@   @@     @@
+                    @     @@   @@    @@   @@    @@   @@   @@ 
+                   @@@    @@     @@@@   @@@@@   @@@    @@@   
+
+                               Negotiating Router
+
+                   Alliance CAD System 5.0 20090901,  nero 5.0
+                   Copyright (c) 2002-2019,     ASIM/LIP6/UPMC
+                   E-mail        : alliance-users@asim.lip6.fr
+
+                                S/N 20080611.1
+
+
+  o  MBK environment :
+
+     MBK_IN_LO       := vst
+     MBK_OUT_LO      := vst
+     MBK_IN_PH       := ap
+     MBK_OUT_PH      := ap
+     MBK_WORK_LIB    := .
+     MBK_CATA_LIB    := .
+                        /usr/lib64/alliance/cells/sxlib
+                        /usr/lib64/alliance/cells/dp_sxlib
+                        /usr/lib64/alliance/cells/rflib
+                        /usr/lib64/alliance/cells/rf2lib
+                        /usr/lib64/alliance/cells/ramlib
+                        /usr/lib64/alliance/cells/romlib
+                        /usr/lib64/alliance/cells/pxlib
+                        /usr/lib64/alliance/cells/padlib
+     MBK_CATAL_NAME  := CATAL
+     MBK_VDD         := vdd
+     MBK_VSS         := vss
+     MBK_SEPAR       := .
+
+  o  Loading netlist "fsmpa_bg_ln_scan"...
+  o  Loading layout "fsmpa_p"...
+  o  Flattening layout...
+  o  Flattening netlist...
+  o  Building netlist dual representation (lofigchain)...
+  o  Binding logical & physical views...
+
+  o  Loading design into grid...
+     o  Using seed cell "a2_x2_ins" (model "a2_x2").
+     o  Grid offset : (0,0) [adjust (0,0)]
+     o  Small design, global routing disabled.
+     o  Allocating grid size [51,51,3].
+     o  Loading external terminals.
+     o  Finding obstacles.
+     o  Loading nets into grid.
+     o  Allocating the net scheduler.
+     o  Reading power grid.
+
+  o  Local routing stage.
+     - [  36] (hp :=     0) "vdd"
+     - [  35] (hp :=     0) "vss"
+     - [  34] (hp :=     9) "op"
+     - [  33] (hp :=    11) "na2_x1_sig"
+     - [  32] (hp :=    11) "one_sig"
+     - [  31] (hp :=    12) "scanout"
+     - [  30] (hp :=    13) "inv_x2_sig"
+     - [  29] (hp :=    13) "o3_x2_2_sig"
+     - [  28] (hp :=    14) "na3_x1_sig"
+     - [  27] (hp :=    14) "not_inp"
+     - [  26] (hp :=    16) "mbk_buf_not_fsm_cs_s3"
+     - [  25] (hp :=    22) "nao2o22_x1_sig"
+     - [  24] (hp :=    22) "scanin"
+     - [  23] (hp :=    23) "o3_x2_sig"
+     - [  22] (hp :=    23) "o2_x2_sig"
+     - [  21] (hp :=    23) "not_fsm_cs 1"
+     - [  20] (hp :=    31) "on12_x1_sig"
+     - [  19] (hp :=    31) "ck"
+     - [  18] (hp :=    32) "ao2o22_x2_sig"
+     - [  17] (hp :=    32) "not_fsm_cs_s1"
+     - [  16] (hp :=    33) "not_reset"
+     - [  15] (hp :=    33) "not_fsm_ns_s4"
+     - [  14] (hp :=    33) "not_fsm_cs_s5"
+     - [  13] (hp :=    34) "a2_x2_sig"
+     - [  12] (hp :=    36) "ao22_x2_sig"
+     - [  11] (hp :=    38) "not_fsm_cs_s3"
+     - [  10] (hp :=    40) "tr"
+     - [   9] (hp :=    45) "fsm_ns_s5"
+     - [   8] (hp :=    49) "not_fsm_cs 0"
+     - [   7] (hp :=    50) "not_fsm_cs_s4"
+     - [   6] (hp :=    65) "reset"
+     - [   5] (hp :=    66) "fsm_cs 0"
+     - [   4] (hp :=    66) "fsm_cs 1"
+     - [   3] (hp :=    68) "not_fsm_cs 2"
+     - [   2] (hp :=    70) "inp"
+     - [   1] (hp :=    70) "test"
+              > AStar unable to find a path.
+              > Re-routing with pri := 256.
+              > AStar unable to find a path.
+              > Re-routing with pri := 257.
+     - [   1] (hp :=    33) "not_fsm_ns_s4"
+     - [   0] (hp :=    80) "fsm_cs 2"
+
+  o  Routing stats :
+     - routing iterations    := 20907
+     - re-routing iterations := 4441
+     - ratio                 := 17.5201%.
+
+  o  Dumping routing grid.
+  o  Saving MBK figure "fsmpa_bg_ln_scan".
+  o  Saving layout as "fsmpa_bg_ln_scan"...
+
+

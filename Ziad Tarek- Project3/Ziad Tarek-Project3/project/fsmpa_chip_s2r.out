@@ -1,0 +1,71 @@
+
+                                      @@@@           
+                                     @   @@          
+                                    @@    @@         
+                            @@@@@@  @@@   @@ @@@ @@@ 
+                           @@    @   @   @@   @@@  @@
+                           @@@           @    @@   @@
+                            @@@@        @     @@     
+                              @@@@     @      @@     
+                           @    @@@   @    @  @@     
+                           @@    @@  @@@@@@   @@     
+                           @ @@@@@  @@@@@@@  @@@@    
+
+                        Symbolic to Real layout converter
+
+                   Alliance CAD System 5.0 20090901,   s2r 5.0
+                   Copyright (c) 2002-2019,     ASIM/LIP6/UPMC
+                   E-mail        : alliance-users@asim.lip6.fr
+
+
+	o loading technology file : /usr/lib64/alliance/etc/cmos.rds
+	o loading all level of symbolic layout : fsmpa_bg_ln_scan
+	o removing symbolic data structure 
+	o layout post-treating
+ 		with top connectors,
+ 		with sub connectors,
+ 		with signal names,
+ 		without scotch.
+	--> post-treating model one_x0
+	    rectangle merging : 
+	--> post-treating model buf_x2
+	    rectangle merging : 
+	--> post-treating model sff2_x4
+	    rectangle merging : 
+	--> post-treating model o3_x2
+	    rectangle merging : 
+	--> post-treating model na2_x1
+	    rectangle merging : 
+	--> post-treating model on12_x1
+	    rectangle merging : 
+	--> post-treating model na3_x1
+	    rectangle merging : 
+	--> post-treating model inv_x2
+	    rectangle merging : 
+	--> post-treating model a2_x2
+	    rectangle merging : 
+	--> post-treating model ao2o22_x2
+	    rectangle merging : 
+	--> post-treating model o2_x2
+	    rectangle merging : 
+	--> post-treating model ao22_x2
+	    rectangle merging : 
+	--> post-treating model nao2o22_x1
+	    rectangle merging : 
+	--> post-treating model inv_x4
+	    rectangle merging : 
+	--> post-treating model no3_x1
+	    rectangle merging : 
+	--> post-treating model nao22_x1
+	    rectangle merging : 
+	--> post-treating model tie_x0
+	    rectangle merging : 
+	--> post-treating model rowend_x0
+	    rectangle merging : 
+	--> post-treating model fsmpa_bg_ln_scan
+	    ring flattenning  : 
+	    rectangle merging : 
+	o saving fsmpa_chip.cif
+	o memory allocation informations
+	--> required rectangles = 0  really allocated = 0
+	--> Number of allocated bytes: 267084

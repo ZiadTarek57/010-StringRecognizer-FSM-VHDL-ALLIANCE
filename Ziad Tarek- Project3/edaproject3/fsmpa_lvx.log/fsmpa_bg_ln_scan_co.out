@@ -1,0 +1,58 @@
+
+               @@@@ @                                                 
+             @@    @@                                                 
+            @@      @                                                 
+           @@       @    @@@    @@@  @@@@    @@@@@@   @@@@    @@@ @@@ 
+           @@          @@   @@   @@    @@   @@  @@   @@   @    @@@  @@
+           @@         @@     @@  @@    @@   @   @@   @@   @@   @@   @@
+           @@         @@     @@  @@    @@   @   @      @@@@@   @@     
+           @@         @@     @@  @@    @@    @@@     @@   @@   @@     
+            @@      @ @@     @@  @@    @@   @@      @@    @@   @@     
+             @@    @@  @@   @@   @@   @@@   @@@@@@  @@   @@@   @@     
+               @@@@      @@@      @@@@  @@ @@   @@@  @@@@  @@ @@@@    
+                                            @     @                   
+                                             @@@@@                    
+
+                       Netlist extractor ... formerly Lynx
+
+                  Alliance CAD System 5.0 20090901, cougar 1.21
+                  Copyright (c) 1998-2019,       ASIM/LIP6/UPMC
+                  Author(s):  Ludovic Jacomme and Gregoire Avot
+                  Contributor(s):              Picault Stephane
+                  E-mail        :   alliance-users@asim.lip6.fr
+
+	---> Parse technological file /usr/lib64/alliance/etc/cmos.rds
+
+		  RDS_LAMBDA        = 4
+		  RDS_UNIT          = 4
+		  RDS_PHYSICAL_GRID = 2
+		  MBK_SCALE_X       = 100
+
+	---> Extract symbolic figure fsmpa_bg_ln_scan
+
+		---> Translate Mbk -> Rds
+
+		---> Build windows
+		<--- 81
+
+		---> Rectangles    : 1058
+		---> Figure size   : (   -100,   -100 )
+		                     (  25100,  25100 )
+
+		---> Cut transistors
+		<--- 0
+		---> Build equis
+		<--- 41
+		---> Delete windows
+		---> Build signals
+		<--- 41
+		---> Build instances
+		<--- 52
+		---> Build transistors
+		<--- 0
+		---> Save netlist
+
+	<--- done !
+
+	---> Total extracted capacitance
+	<--- 0.0pF
