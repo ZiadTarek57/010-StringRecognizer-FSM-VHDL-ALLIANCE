@@ -1,0 +1,8 @@
+# Encoding figure "fsm"
+-fsm r 3
+s5	1
+s4	6
+s3	2
+s2	7
+s1	4
+s0	0

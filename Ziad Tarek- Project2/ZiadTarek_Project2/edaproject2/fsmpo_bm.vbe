@@ -1,0 +1,63 @@
+-- VHDL data flow description generated from `fsmpo_bm`
+--		date : Wed Dec 11 05:14:25 2019
+
+
+-- Entity Declaration
+
+ENTITY fsmpo_bm IS
+  PORT (
+  ck : in BIT;	-- ck
+  vdd : in BIT;	-- vdd
+  vss : in BIT;	-- vss
+  inp : in BIT;	-- inp
+  reset : in BIT;	-- reset
+  op : out BIT;	-- op
+  tr : out BIT	-- tr
+  );
+END fsmpo_bm;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF fsmpo_bm IS
+  SIGNAL fsm_cs : REG_VECTOR(5 DOWNTO 0) REGISTER;	-- fsm_cs
+  SIGNAL aux2 : BIT;		-- aux2
+  SIGNAL aux3 : BIT;		-- aux3
+  SIGNAL aux4 : BIT;		-- aux4
+  SIGNAL aux5 : BIT;		-- aux5
+
+BEGIN
+  aux5 <= (NOT(reset) AND inp);
+  aux4 <= (fsm_cs(3) OR fsm_cs(2));
+  aux3 <= (NOT(reset) AND NOT(inp));
+  aux2 <= ((fsm_cs(0) OR (fsm_cs(1) AND NOT(inp))) AND NOT(
+reset));
+  label0 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    fsm_cs (0) <= GUARDED aux2;
+  END BLOCK label0;
+  label1 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    fsm_cs (1) <= GUARDED (aux4 AND aux3);
+  END BLOCK label1;
+  label2 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    fsm_cs (2) <= GUARDED ((fsm_cs(4) OR fsm_cs(1)) AND aux5);
+  END BLOCK label2;
+  label3 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    fsm_cs (3) <= GUARDED ((fsm_cs(5) OR aux4) AND aux5);
+  END BLOCK label3;
+  label4 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    fsm_cs (4) <= GUARDED ((fsm_cs(5) OR fsm_cs(4)) AND aux3);
+  END BLOCK label4;
+  label5 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    fsm_cs (5) <= GUARDED reset;
+  END BLOCK label5;
+
+tr <= aux2;
+
+op <= (fsm_cs(2) AND aux3);
+END;

@@ -1,0 +1,91 @@
+-- VHDL data flow description generated from `fsmpa_bg_ln_net`
+--		date : Wed Dec 11 08:07:37 2019
+
+
+-- Entity Declaration
+
+ENTITY fsmpa_bg_ln_net IS
+  PORT (
+  tr : out BIT;	-- tr
+  op : out BIT;	-- op
+  reset : in BIT;	-- reset
+  inp : in BIT;	-- inp
+  vss : in BIT;	-- vss
+  vdd : in BIT;	-- vdd
+  ck : in BIT	-- ck
+  );
+END fsmpa_bg_ln_net;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF fsmpa_bg_ln_net IS
+  SIGNAL fsm_cs : REG_VECTOR(2 DOWNTO 0) REGISTER;	-- fsm_cs
+  SIGNAL o3_x2_sig : BIT;		-- o3_x2_sig
+  SIGNAL not_fsm_ns_s4 : BIT;		-- not_fsm_ns_s4
+  SIGNAL not_fsm_cs_s3 : BIT;		-- not_fsm_cs_s3
+  SIGNAL not_fsm_cs_s5 : BIT;		-- not_fsm_cs_s5
+  SIGNAL not_fsm_cs_s4 : BIT;		-- not_fsm_cs_s4
+  SIGNAL not_fsm_cs_s1 : BIT;		-- not_fsm_cs_s1
+  SIGNAL not_fsm_cs : BIT_VECTOR(2 DOWNTO 0);	-- not_fsm_cs
+  SIGNAL not_inp : BIT;		-- not_inp
+  SIGNAL not_reset : BIT;		-- not_reset
+  SIGNAL fsm_ns_s5 : BIT;		-- fsm_ns_s5
+  SIGNAL o2_x2_sig : BIT;		-- o2_x2_sig
+  SIGNAL nao2o22_x1_sig : BIT;		-- nao2o22_x1_sig
+  SIGNAL ao22_x2_sig : BIT;		-- ao22_x2_sig
+  SIGNAL na2_x1_sig : BIT;		-- na2_x1_sig
+  SIGNAL on12_x1_sig : BIT;		-- on12_x1_sig
+  SIGNAL ao2o22_x2_sig : BIT;		-- ao2o22_x2_sig
+  SIGNAL inv_x2_sig : BIT;		-- inv_x2_sig
+  SIGNAL na3_x1_sig : BIT;		-- na3_x1_sig
+  SIGNAL a2_x2_sig : BIT;		-- a2_x2_sig
+  SIGNAL o3_x2_2_sig : BIT;		-- o3_x2_2_sig
+  SIGNAL one_sig : BIT;		-- one_sig
+  SIGNAL mbk_buf_not_fsm_cs_s3 : BIT;		-- mbk_buf_not_fsm_cs_s3
+
+BEGIN
+  mbk_buf_not_fsm_cs_s3 <= not_fsm_cs_s3;
+  one_sig <= '1';
+  o3_x2_2_sig <= ((inp OR reset) OR not_fsm_cs_s4);
+  a2_x2_sig <= (na3_x1_sig AND not_reset);
+  na3_x1_sig <= NOT(((not_fsm_ns_s4 AND inv_x2_sig) AND 
+ao2o22_x2_sig));
+  inv_x2_sig <= NOT(fsm_ns_s5);
+  ao2o22_x2_sig <= ((not_inp OR not_fsm_cs_s1) AND (not_fsm_cs_s4 OR
+ not_inp));
+  on12_x1_sig <= (NOT(not_reset) OR na2_x1_sig);
+  na2_x1_sig <= NOT((one_sig AND not_fsm_ns_s4));
+  ao22_x2_sig <= ((nao2o22_x1_sig OR fsm_ns_s5) AND not_reset);
+  nao2o22_x1_sig <= NOT(((inp OR o2_x2_sig) AND (not_fsm_cs_s1 OR inp
+)));
+  o2_x2_sig <= (fsm_cs(2) OR not_fsm_cs(1));
+  fsm_ns_s5 <= NOT(((inp OR not_fsm_cs_s4) AND not_fsm_cs_s5));
+  not_reset <= NOT(reset);
+  not_inp <= NOT(inp);
+  not_fsm_cs (0) <= NOT(fsm_cs(0));
+  not_fsm_cs (1) <= NOT(fsm_cs(1));
+  not_fsm_cs (2) <= NOT(fsm_cs(2));
+  not_fsm_cs_s1 <= (fsm_cs(2) OR not_fsm_cs(0));
+  not_fsm_cs_s4 <= (not_fsm_cs(1) OR not_fsm_cs(2));
+  not_fsm_cs_s5 <= (not_fsm_cs(0) OR not_fsm_cs(2));
+  not_fsm_cs_s3 <= ((fsm_cs(0) OR fsm_cs(1)) OR not_fsm_cs(2));
+  not_fsm_ns_s4 <= ((o3_x2_sig OR inp) AND (inp OR not_fsm_cs_s3));
+  o3_x2_sig <= ((fsm_cs(0) OR fsm_cs(1)) OR fsm_cs(2));
+  label0 : BLOCK (NOT(((ck AND NOT((ck'STABLE))) XOR '1')) = '1')
+  BEGIN
+    fsm_cs (0) <= GUARDED ao22_x2_sig;
+  END BLOCK label0;
+  label1 : BLOCK (NOT(((ck AND NOT((ck'STABLE))) XOR '1')) = '1')
+  BEGIN
+    fsm_cs (1) <= GUARDED on12_x1_sig;
+  END BLOCK label1;
+  label2 : BLOCK (NOT(((ck AND NOT((ck'STABLE))) XOR '1')) = '1')
+  BEGIN
+    fsm_cs (2) <= GUARDED a2_x2_sig;
+  END BLOCK label2;
+
+tr <= NOT(((not_fsm_cs_s5 OR reset) AND o3_x2_2_sig));
+
+op <= NOT(((inp OR mbk_buf_not_fsm_cs_s3) OR reset));
+END;

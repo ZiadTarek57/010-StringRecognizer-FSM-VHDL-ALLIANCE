@@ -1,0 +1,75 @@
+-- VHDL data flow description generated from `fsmpa`
+--		date : Wed Dec 11 05:14:01 2019
+
+
+-- Entity Declaration
+
+ENTITY fsmpa IS
+  PORT (
+  ck : in BIT;	-- ck
+  vdd : in BIT;	-- vdd
+  vss : in BIT;	-- vss
+  inp : in BIT;	-- inp
+  reset : in BIT;	-- reset
+  op : out BIT;	-- op
+  tr : out BIT	-- tr
+  );
+END fsmpa;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE VBE OF fsmpa IS
+  SIGNAL fsm_cs : REG_VECTOR(2 DOWNTO 0) REGISTER;	-- fsm_cs
+  SIGNAL fsm_cs_s5 : BIT;		-- fsm_cs_s5
+  SIGNAL fsm_ns_s5 : BIT;		-- fsm_ns_s5
+  SIGNAL fsm_cs_s4 : BIT;		-- fsm_cs_s4
+  SIGNAL fsm_ns_s4 : BIT;		-- fsm_ns_s4
+  SIGNAL fsm_cs_s3 : BIT;		-- fsm_cs_s3
+  SIGNAL fsm_ns_s3 : BIT;		-- fsm_ns_s3
+  SIGNAL fsm_cs_s2 : BIT;		-- fsm_cs_s2
+  SIGNAL fsm_ns_s2 : BIT;		-- fsm_ns_s2
+  SIGNAL fsm_cs_s1 : BIT;		-- fsm_cs_s1
+  SIGNAL fsm_ns_s1 : BIT;		-- fsm_ns_s1
+  SIGNAL fsm_cs_s0 : BIT;		-- fsm_cs_s0
+  SIGNAL fsm_ns_s0 : BIT;		-- fsm_ns_s0
+  SIGNAL fsm_ns : BIT_VECTOR(2 DOWNTO 0);	-- fsm_ns
+
+BEGIN
+  fsm_ns(0) <= (fsm_ns_s1 OR fsm_ns_s5);
+  fsm_ns(1) <= (fsm_ns_s0 OR fsm_ns_s4);
+  fsm_ns(2) <= (fsm_ns_s3 OR fsm_ns_s4 OR fsm_ns_s5);
+  fsm_ns_s0 <= '0';
+  fsm_cs_s0 <= (NOT(fsm_cs(2)) AND fsm_cs(1));
+  fsm_ns_s1 <= ((fsm_cs_s0 AND NOT(inp)) OR (fsm_cs_s1 AND NOT(
+inp)));
+  fsm_cs_s1 <= (NOT(fsm_cs(2)) AND fsm_cs(0));
+  fsm_ns_s2 <= ((fsm_cs_s0 AND inp) OR (fsm_cs_s2 AND inp) OR (
+fsm_cs_s3 AND inp));
+  fsm_cs_s2 <= (NOT(fsm_cs(2)) AND NOT(fsm_cs(1)) AND NOT(
+fsm_cs(0)));
+  fsm_ns_s3 <= ((fsm_cs_s1 AND inp) OR (fsm_cs_s4 AND inp));
+  fsm_cs_s3 <= (fsm_cs(2) AND NOT(fsm_cs(1)) AND NOT(fsm_cs(0)));
+  fsm_ns_s4 <= ((fsm_cs_s2 AND NOT(inp)) OR (fsm_cs_s3 AND NOT(
+inp)));
+  fsm_cs_s4 <= (fsm_cs(2) AND fsm_cs(1));
+  fsm_ns_s5 <= ((fsm_cs_s4 AND NOT(inp)) OR fsm_cs_s5);
+  fsm_cs_s5 <= (fsm_cs(2) AND fsm_cs(0));
+  label0 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    fsm_cs(0) <= GUARDED (fsm_ns(0) AND NOT(reset));
+  END BLOCK label0;
+  label1 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    fsm_cs(1) <= GUARDED (fsm_ns(1) OR reset);
+  END BLOCK label1;
+  label2 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    fsm_cs(2) <= GUARDED (fsm_ns(2) AND NOT(reset));
+  END BLOCK label2;
+
+tr <= ((fsm_cs_s4 AND NOT(reset) AND NOT(inp)) OR (
+fsm_cs_s5 AND NOT(reset)));
+
+op <= (fsm_cs_s3 AND NOT(reset) AND NOT(inp));
+END;

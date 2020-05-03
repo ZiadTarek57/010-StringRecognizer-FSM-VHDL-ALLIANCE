@@ -1,0 +1,104 @@
+Library IEEE;
+use IEEE.all;
+USE ieee.std_logic_1164.ALL;
+
+entity fsm is
+port  (
+	ck    : in	bit;
+	vdd   : in	bit;
+	vss   : in	bit;
+	inp   : in	bit;
+	reset : in	bit;
+	op    : out	bit;
+	tr    : out	bit
+      );
+end fsm;
+
+architecture archi of fsm is
+  type STATE_TYPE is (S0, S1, S2, S3, S4, S5);  --S5 is the termination State
+  signal ns, cs : STATE_TYPE;
+
+	--Synthesis directives
+	--pragma current_state cs
+	--pragma next_state ns
+	--pragma clock ck
+begin
+
+-- Process (1)
+  process (cs, inp, reset)
+  begin
+      if (reset='1') then
+      ns<=S0;
+      else
+      CASE cs is
+        when S0 =>
+	  if (inp='1') then
+	    op <= '0';
+	    tr <= '0'; 
+	    ns <= S2;
+          else
+	    op <= '0';
+	    tr <= '0';
+	    ns <= S1;
+          end if;
+
+        when S1 =>
+          if (inp='1') then
+	    op <= '0';
+	    tr <= '0'; 
+	    ns <= S3;
+          else
+	    op <= '0';
+	    tr <= '0';
+	    ns <= S1;
+          end if;
+          when S3 =>
+          if (inp='1') then
+	    op <= '0';
+	    tr <= '0'; 
+	    ns <= S2;
+          else
+	    op <= '1';
+	    tr <= '0';
+	    ns <= S4;
+          end if;
+
+          when S4 =>
+          if (inp='1') then
+	    op <= '0';
+	    tr <= '0'; 
+	    ns <= S3;
+          else
+	    op <= '0';
+	    tr <= '1';
+	    ns <= S5;
+          end if;
+
+	  when S2 =>
+           if (inp='1') then
+	    op <= '0';
+	    tr <= '0'; 
+	    ns <= S2;
+           else
+	    op <= '0';
+	    tr <= '0';
+	    ns <= S4;
+           end if;
+
+  	   when S5 =>
+	    op <= '0';
+	    tr <= '1'; 
+	    ns <= S5;
+         end case;
+    end if;
+   end process;
+-- Process (2)
+  process(ck)
+  begin
+	if(ck = '1' and not ck'stable)then
+    
+      		cs <= ns;
+    end if;
+  end process;
+
+end archi;

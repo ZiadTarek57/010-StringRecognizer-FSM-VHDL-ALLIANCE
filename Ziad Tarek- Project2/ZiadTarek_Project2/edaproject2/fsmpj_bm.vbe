@@ -1,0 +1,51 @@
+-- VHDL data flow description generated from `fsmpj_bm`
+--		date : Wed Dec 11 05:14:25 2019
+
+
+-- Entity Declaration
+
+ENTITY fsmpj_bm IS
+  PORT (
+  ck : in BIT;	-- ck
+  vdd : in BIT;	-- vdd
+  vss : in BIT;	-- vss
+  inp : in BIT;	-- inp
+  reset : in BIT;	-- reset
+  op : out BIT;	-- op
+  tr : out BIT	-- tr
+  );
+END fsmpj_bm;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF fsmpj_bm IS
+  SIGNAL fsm_cs : REG_VECTOR(2 DOWNTO 0) REGISTER;	-- fsm_cs
+  SIGNAL aux0 : BIT;		-- aux0
+  SIGNAL aux1 : BIT;		-- aux1
+  SIGNAL aux2 : BIT;		-- aux2
+
+BEGIN
+  aux2 <= NOT(aux0 AND NOT(inp));
+  aux1 <= (aux0 XOR fsm_cs(0));
+  aux0 <= NOT(NOT(fsm_cs(1)) OR fsm_cs(2));
+  label0 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    fsm_cs (0) <= GUARDED ((NOT(aux0) AND NOT(inp)) OR (fsm_cs(2) AND 
+fsm_cs(0)) OR reset);
+  END BLOCK label0;
+  label1 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    fsm_cs (1) <= GUARDED (NOT(aux2) OR aux1 OR reset);
+  END BLOCK label1;
+  label2 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    fsm_cs (2) <= GUARDED (aux2 AND aux1 AND NOT(reset));
+  END BLOCK label2;
+
+tr <= ((fsm_cs(2) OR NOT(inp)) AND NOT(aux0) AND 
+fsm_cs(0) AND NOT(reset));
+
+op <= (fsm_cs(2) AND NOT(fsm_cs(0)) AND NOT(reset) AND 
+NOT(inp));
+END;
